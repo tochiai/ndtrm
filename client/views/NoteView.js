@@ -15,7 +15,8 @@ var NoteView = Backbone.View.extend({
   },
 
   render: function(){
-    return this.$el.html(this.template());
+    console.log(this.$el);
+    return $('body').append(this.$el.html(this.template()));
   }
 
 });
