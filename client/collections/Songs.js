@@ -1,6 +1,6 @@
-// Songs.js - Defines a backbone collection class for songs.
-var Songs = Backbone.Collection.extend({
+// NoteTable.js - Defines a backbone collection class for songs.
+var NoteTable = Backbone.Collection.extend({
 
-  model: SongModel
+  model: NoteRow
 
 });

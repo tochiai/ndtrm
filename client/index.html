@@ -9,29 +9,33 @@
 
     <script src="data/data.js"></script>
 
-    <script src="models/SongModel.js"></script>
-    <script src="collections/Songs.js"></script>
-    <script src="collections/SongQueue.js"></script>
-    <script src="models/AppModel.js"></script>
-    <script src="views/SongQueueView.js"></script>
-    <script src="views/SongQueueEntryView.js"></script>
+    <script src="models/NoteModel.js"></script>
+    <script src="collections/NoteTable.js"></script>
+    <!-- // <script src="collections/SongQueue.js"></script> -->
+    <!-- // <script src="models/AppModel.js"></script> -->
+    <!-- // <script src="views/SongQueueView.js"></script> -->
+    <!-- // <script src="views/SongQueueEntryView.js"></script> -->
 
-    <script src="views/PlayerView.js"></script>
-    <script src="views/LibraryView.js"></script>
-    <script src="views/LibraryEntryView.js"></script>
-    <script src="views/AppView.js"></script>
+    <!-- // <script src="views/PlayerView.js"></script> -->
+    <!-- // <script src="views/LibraryView.js"></script> -->
+    <!-- // <script src="views/LibraryEntryView.js"></script> -->
+    <!-- // <script src="views/AppView.js"></script> -->
+
+    <script src="assets/audiosynth.js"></script>
+    <script src="assets/audiosynthview.js"></script>
 
     <script>
       $(function(){
         // set up model objects
-        var library = new Songs(songData);
-        var app = new AppModel({library: library});
+        // var library = new Songs(songData);
+        // var app = new AppModel({library: library});
+        var note = new NoteModel();
 
         // build a view for the top level of the whole app
-        var appView = new AppView({model: app});
+        // var appView = new AppView({model: app});
 
         // put the view onto the screen
-        $('body').append(appView.render());
+        // $('body').append(appView.render());
       });
     </script>
   </body>
