@@ -10,7 +10,9 @@
     <script src="data/data.js"></script>
 
     <script src="models/NoteModel.js"></script>
+    <script src="models/NoteRowModel.js"></script>
     <script src="collections/NoteTable.js"></script>
+    <script src="views/NoteView.js"></script>
     <!-- // <script src="collections/SongQueue.js"></script> -->
     <!-- // <script src="models/AppModel.js"></script> -->
     <!-- // <script src="views/SongQueueView.js"></script> -->
@@ -30,6 +32,7 @@
         // var library = new Songs(songData);
         // var app = new AppModel({library: library});
         var note = new NoteModel();
+        var noteView = new NoteView({model: note});
 
         // build a view for the top level of the whole app
         // var appView = new AppView({model: app});
