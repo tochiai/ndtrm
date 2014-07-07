@@ -236,7 +236,6 @@ function AudioSynthView() {
 
 	// Creates our audio player
 	var fnPlayNote = function(note, octave) {
-
 		src = __audioSynth.generate(selectSound.value, note, octave, 2);
 		container = new Audio(src);
 		container.addEventListener('ended', function() { container = null; });
@@ -378,6 +377,9 @@ function AudioSynthView() {
 	
 	Object.defineProperty(this, 'draw', {
 		value: fnCreateKeyboard
+	});
+	Object.defineProperty(this, 'fnPlayNote', {
+		value: fnPlayNote
 	});
 
 }

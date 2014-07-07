@@ -3,19 +3,18 @@ var NoteView = Backbone.View.extend({
 
   tagName: 'td',
 
-  template: _.template(' '),
+  template: _.template('f'),
 
-  // events: {
-  //   'click': function() {
-  //     this.model.enqueue();
-  //   }
-  // },
+  events: {
+    'click': function() {
+      this.model.get('synth').fnPlayNote('C' , 4);
+    }
+  },
   initialize: function(){
     this.render();
   },
 
   render: function(){
-    console.log(this.$el);
     return $('body').append(this.$el.html(this.template()));
   }
 

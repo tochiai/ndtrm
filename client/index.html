@@ -50,10 +50,10 @@
         // set up model objects
         // var library = new Songs(songData);
         // var app = new AppModel({library: library});
-        var note = new NoteModel();
-        var noteView = new NoteView({model: note});
         var a = new AudioSynthView();
         a.draw();
+        var note = new NoteModel({synth: a});
+        var noteView = new NoteView({model: note});
 
         // build a view for the top level of the whole app
         // var appView = new AppView({model: app});
