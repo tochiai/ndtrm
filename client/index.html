@@ -15,6 +15,7 @@
     <script src="views/NoteView.js"></script>
     <script src="collections/NoteRowCollection.js"></script>
     <script src="models/NoteRowModel.js"></script>
+    <script src="views/NoteRowView.js"></script>
     <!-- // <script src="collections/SongQueue.js"></script> -->
     <!-- // <script src="models/AppModel.js"></script> -->
     <!-- // <script src="views/SongQueueView.js"></script> -->
@@ -52,7 +53,8 @@
         a.draw();
         var note = new NoteModel({synth: a});
         var noteView = new NoteView({model: note});
-        note.play();
+        var noteRowModel = new NoteRowModel({rowCollection: new NoteRowCollection([note])});
+        var noteRowView = new NoteRowView({model: noteRowModel});
 
 
 
