@@ -8,14 +8,29 @@ var NoteView = Backbone.View.extend({
   events: {
     'click': function() {
       this.model.get('synth').fnPlayNote('C' , 4);
+    },
+    'dblclick': function() {
+      this.toggleLock();
     }
   },
   initialize: function(){
     this.render();
+    // Doesn't currently pass in this or something
+    // this.$el.on('click', function(e){
+    //   if(e.shiftKey) {
+    //     console.log(this);
+    //   } else if(e.altKey) {
+    //       //Alt+Click
+    //   }
+    // }, this);
   },
 
   render: function(){
     return $('body').append(this.$el.html(this.template()));
+  },
+
+  toggleLock: function(){
+    console.log('toggle lock');
   }
 
 });
