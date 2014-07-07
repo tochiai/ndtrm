@@ -14,6 +14,7 @@ var NoteView = Backbone.View.extend({
     }
   },
   initialize: function(){
+    this.model.on('play', this.play, this);
     this.render();
     // Doesn't currently pass in this or something
     // this.$el.on('click', function(e){
@@ -31,6 +32,10 @@ var NoteView = Backbone.View.extend({
 
   toggleLock: function(){
     console.log('toggle lock');
+  },
+
+  play: function(){
+    this.model.get('synth').fnPlayNote('C' , 4);
   }
 
 });
