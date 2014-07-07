@@ -25,7 +25,26 @@
 
     <script src="assets/audiosynth.js"></script>
     <script src="assets/audiosynthview.js"></script>
-
+    <a href="https://github.com/keithwhor"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 99" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    <div class="title">Musical Keyboard - JS Dynamic Audio Synth</div>
+    <div class="sub">Created by <a href="http://keithwhor.com">Keith William Horwood</a> &copy; 2013<br />
+    <div class="small"><br><div class="source"><a href="http://keithwhor.github.io/audiosynth">[ Source Code and Usage ]</a></div><br>
+    <a href="http://twitter.com/keithwhor">[ Twitter ]</a></div></div>
+    <div class="keyboard-options">
+    Sound
+    <select ID="sound">
+        <option value="0" selected>Keyboard</option>
+        <option value="1">Organ</option>
+        <option value="2">Acoustic Guitar</option>
+        <option value="3">EDM, bro!</option>
+    </select>
+    <div ID="keyboard" class="keyboard-holder"></div>
+    <div class="keyboard-options">
+    Range [C<span ID="OCTAVE_LOWER">3</span>-B<span ID="OCTAVE_UPPER">5</span>]
+    <input type="button" ID="-_OCTAVE" value="-" />
+    <input type="button" ID="+_OCTAVE" value="+" /><br />
+    <i>(Use left/right arrows to adjust with keyboard)</i>
+    </div>
     <script>
       $(function(){
         // set up model objects
@@ -33,6 +52,8 @@
         // var app = new AppModel({library: library});
         var note = new NoteModel();
         var noteView = new NoteView({model: note});
+        var a = new AudioSynthView();
+        a.draw();
 
         // build a view for the top level of the whole app
         // var appView = new AppView({model: app});
