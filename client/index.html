@@ -17,6 +17,8 @@
     <script src="collections/NoteRowCollection.js"></script>
     <script src="models/NoteRowModel.js"></script>
     <script src="views/NoteRowView.js"></script>
+    <script src="collections/NoteTable.js"></script>
+    <script src="views/NoteTableView.js"></script>
     <!-- // <script src="collections/SongQueue.js"></script> -->
     <!-- // <script src="models/AppModel.js"></script> -->
     <!-- // <script src="views/SongQueueView.js"></script> -->
@@ -45,8 +47,8 @@
     <input type="button" ID="+_OCTAVE" value="+" /><br />
     <i>(Use left/right arrows to adjust with keyboard)</i>
     </div>
-    <table class="note-table">
-    </table>
+    <!-- <table class="note-table"> -->
+    <!-- </table> -->
     <script>
       $(function(){
         // set up model objects
@@ -54,16 +56,24 @@
         // var app = new AppModel({library: library});
         var a = new AudioSynthView();
         a.draw();
-        var noteC = new NoteModel({synth: a, pitch: 'C'});
-        var noteD = new NoteModel({synth: a, pitch: 'D'});
-        var noteViewC = new NoteView({model: noteC});
-        var noteViewD = new NoteView({model: noteD});
-        var noteRowModel = new NoteRowModel({rowCollection: new NoteRowCollection([noteC, noteD])});
-        var noteRowView = new NoteRowView({model: noteRowModel});
-        var $noteRow = noteRowView.render();
-        $('.note-table').append($noteRow);
+        var noteC1 = new NoteModel({synth: a, pitch: 'C'});
+        var noteC2 = new NoteModel({synth: a, pitch: 'C'});
+        var noteD1 = new NoteModel({synth: a, pitch: 'D'});
+        var noteD2 = new NoteModel({synth: a, pitch: 'D'});
+        var noteViewC1 = new NoteView({model: noteC1});
+        var noteViewC2 = new NoteView({model: noteC2});
+        var noteViewD1 = new NoteView({model: noteD1});
+        var noteViewD2 = new NoteView({model: noteD2});
+        var noteRowModel1 = new NoteRowModel({rowCollection: new NoteRowCollection([noteC1, noteC2])});
+        var noteRowModel2 = new NoteRowModel({rowCollection: new NoteRowCollection([noteD1, noteD2])});
+        var noteTable = new NoteTable([noteRowModel1, noteRowModel2]);
+        // var noteRowView1 = new NoteRowView({model: noteRowModel1});
+        // var noteRowView2 = new NoteRowView({model: noteRowModel2});
+        var noteTableView = new NoteTableView({collection: noteTable});
+        var $noteTable = noteTableView.render();
+        $('body').append($noteTable);
 
-        noteRowView.playNotes();
+        // noteRowView.playNotes();
 
 
 
