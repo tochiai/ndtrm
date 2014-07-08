@@ -19,7 +19,8 @@ var NoteRowView = Backbone.View.extend({
   },
   checkAndPlay: function() {
     if(this.model.get('playing')){
-      this.model.get('current').play();
+      var currentNote = this.model.get('current');
+      currentNote.play();
       this.model.updateCurrent();
     }
   },
