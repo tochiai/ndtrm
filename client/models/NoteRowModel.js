@@ -1,7 +1,7 @@
 // NEEDS A COLLECTION ARGUMENT TO BE INSTANTIATED
 var NoteRowModel = Backbone.Model.extend({
   defaults: {
-    playing: true
+    playing: true,
   },
   initialize: function() {
     // this.set('noteRowCollection', new NoteRowCollection([]));

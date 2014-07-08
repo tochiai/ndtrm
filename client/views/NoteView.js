@@ -2,12 +2,13 @@
 var NoteView = Backbone.View.extend({
 
   tagName: 'td',
+  classname: 'audible',
 
   template: _.template('<%= pitch %>'),
 
   events: {
     'click': function() {
-      this.model.get('synth').fnPlayNote(this.model.get('pitch') , 4);
+      this.toggleAudible();
     },
     'dblclick': function() {
       this.toggleLock();
@@ -15,6 +16,10 @@ var NoteView = Backbone.View.extend({
   },
   initialize: function(){
     this.model.on('play', this.play, this);
+    this.model.on('change:audible', function(){
+      this.$el.toggleClass('audible');
+      this.render();
+    }, this);
     this.render();
     // Doesn't currently pass in this or something
     // this.$el.on('click', function(e){
@@ -33,7 +38,9 @@ var NoteView = Backbone.View.extend({
   toggleLock: function(){
     console.log('toggle lock');
   },
-
+  toggleAudible: function() {
+    this.model.set('audible', !this.model.get('audible'));
+  },
   play: function(){
     this.model.get('synth').fnPlayNote(this.model.get('pitch') , 4);
   }

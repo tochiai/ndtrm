@@ -1,0 +1,6 @@
+.audible {
+	color:red;
+}
+.audible.playing {
+	color:blue;
+}

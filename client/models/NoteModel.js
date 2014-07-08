@@ -1,7 +1,7 @@
 //MUST INSTANTIATE WITH PITCHES
 var NoteModel = Backbone.Model.extend({
   defaults: {
-    audible: false
+    audible: false,
   },
   play: function() {
     if(this.get('audible')){

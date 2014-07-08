@@ -3,7 +3,7 @@ var NoteRowView = Backbone.View.extend({
   model: NoteRowModel,
 
   tagName: "tr",
-
+  
   initialize: function() {
   },
 
