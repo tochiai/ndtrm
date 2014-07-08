@@ -58,8 +58,11 @@
         var noteViewC = new NoteView({model: noteC});
         var noteViewD = new NoteView({model: noteD});
         var noteRowModel = new NoteRowModel({rowCollection: new NoteRowCollection([noteC, noteD])});
-        var $noteRow = new NoteRowView({model: noteRowModel}).render();
-        var noteRowView = $('.note-table').append($noteRow);
+        var noteRowView = new NoteRowView({model: noteRowModel});
+        var $noteRow = noteRowView.render();
+        $('.note-table').append($noteRow);
+
+        noteRowView.playNotes();
 
 
 
