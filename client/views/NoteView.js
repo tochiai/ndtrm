@@ -21,14 +21,6 @@ var NoteView = Backbone.View.extend({
       this.render();
     }, this);
     this.render();
-    // Doesn't currently pass in this or something
-    // this.$el.on('click', function(e){
-    //   if(e.shiftKey) {
-    //     console.log(this);
-    //   } else if(e.altKey) {
-    //       //Alt+Click
-    //   }
-    // }, this);
   },
 
   render: function(){
