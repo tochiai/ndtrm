@@ -19,6 +19,7 @@
     <script src="models/NoteRowModel.js"></script>
     <script src="views/NoteRowView.js"></script>
     <script src="collections/NoteTable.js"></script>
+    <script src="models/NoteTableModel.js"></script>
     <script src="views/NoteTableView.js"></script>
     <!-- // <script src="collections/SongQueue.js"></script> -->
     <!-- // <script src="models/AppModel.js"></script> -->
@@ -67,15 +68,16 @@
         var noteViewD2 = new NoteView({model: noteD2});
         var noteRowModel1 = new NoteRowModel({rowCollection: new NoteRowCollection([noteC1, noteC2])});
         var noteRowModel2 = new NoteRowModel({rowCollection: new NoteRowCollection([noteD1, noteD2])});
-        var noteTable = new NoteTable([noteRowModel1, noteRowModel2]);
+        var noteTableCollection = new NoteTableCollection([noteRowModel1, noteRowModel2]);
         // var noteRowView1 = new NoteRowView({model: noteRowModel1});
         // var noteRowView2 = new NoteRowView({model: noteRowModel2});
-        var noteTableView = new NoteTableView({collection: noteTable});
+        var noteTableModel = new NoteTableModel({tableCollection: noteTableCollection});
+        var noteTableView = new NoteTableView({model: noteTableModel});
         var $noteTable = noteTableView.render();
         $('body').append($noteTable);
 
         // noteRowView.playNotes();
-        noteTableView.playRows();
+        noteTableView.start();
 
 
 
