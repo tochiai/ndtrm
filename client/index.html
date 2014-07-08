@@ -7,6 +7,9 @@
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"></link>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/hrt.js"></script>
 
     <script src="data/data.js"></script>
@@ -21,6 +24,7 @@
     <script src="collections/NoteTable.js"></script>
     <script src="models/NoteTableModel.js"></script>
     <script src="views/NoteTableView.js"></script>
+    <script src="views/PlayerView.js"></script>
     <!-- // <script src="collections/SongQueue.js"></script> -->
     <!-- // <script src="models/AppModel.js"></script> -->
     <!-- // <script src="views/SongQueueView.js"></script> -->
@@ -99,11 +103,12 @@
             return new NoteTableModel({tableCollection: tableCollection});
         };
         var noteTableModel = makeTable();
+        var playerView = new PlayerView({model: noteTableModel});
+        $('body').append(playerView.render());
+
         var noteTableView = new NoteTableView({model: noteTableModel});
         var $noteTable = noteTableView.render();
         $('body').append($noteTable);
-
-        noteTableModel.play();
 
 
 

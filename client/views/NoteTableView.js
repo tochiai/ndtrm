@@ -7,8 +7,11 @@ var NoteTableView = Backbone.View.extend({
   initialize: function() {
     this.model.on('play', function(){
       this.model.set('playing', true);
-      this.start();
     }, this);
+    this.model.on('pause', function(){
+      this.model.set('playing', false);
+    }, this);
+    this.start();
   },
 
   render: function(){

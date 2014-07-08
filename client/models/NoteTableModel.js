@@ -18,5 +18,9 @@ var NoteTableModel = Backbone.Model.extend({
   },
   play: function(){
     this.trigger('play');
+  },
+  pause: function(){
+    console.log('pause fired')
+    this.trigger('pause');
   }
 });
