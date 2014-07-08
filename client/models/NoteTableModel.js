@@ -2,7 +2,8 @@ var NoteTableModel = Backbone.Model.extend({
   defaults: {
     index: 0,
     col: [],
-    playing: false
+    playing: false,
+    bpm: 120,
   },
   initialize: function(){
     this.set('rowLength', this.get('tableCollection').at(0).get('rowCollection').size());
@@ -20,7 +21,6 @@ var NoteTableModel = Backbone.Model.extend({
     this.trigger('play');
   },
   pause: function(){
-    console.log('pause fired')
     this.trigger('pause');
   }
 });

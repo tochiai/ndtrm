@@ -11,6 +11,8 @@ var NoteTableView = Backbone.View.extend({
     this.model.on('pause', function(){
       this.model.set('playing', false);
     }, this);
+    this.model.on('change:bpm', this.changeTempo, this);
+    this.model.on('change:rowLength', this.changeRowLength, this);
     this.start();
   },
 
@@ -36,9 +38,28 @@ var NoteTableView = Backbone.View.extend({
     }
   },
   start: function() {
-    console.log(this);
-    setInterval(this.playCol.bind(this), 125);
+    // the factor of 4 is to allow 16th note precision
+    var timeStep = 1/(4 * this.model.get('bpm') / 60 / 1000);
+    this.model.set('intervalId', setInterval(this.playCol.bind(this), timeStep));
+  },
+  changeTempo: function() {
+    if(this.model.get('intervalId') !== undefined){
+      clearInterval(this.model.get('intervalId'));
+    }
+    if(this.model.get('playing')){
+      this.start();
+    }
+  },
+  changeRowLength: function(){
+    var newLength = this.model.get('rowLength');
+    var currentLength = this.model.get('tableCollection').at(0).size();
+    if(newLength > currentLength){
+      console.log('newLength is greater');
+    } else {
+      console.log('newLength is less');
+    }
   }
+
   // repeated:
     // trigger play for current column
     // load new column

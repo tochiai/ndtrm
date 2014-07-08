@@ -25,6 +25,7 @@
     <script src="models/NoteTableModel.js"></script>
     <script src="views/NoteTableView.js"></script>
     <script src="views/PlayerView.js"></script>
+    <script src="views/ControlsView.js"></script>
     <!-- // <script src="collections/SongQueue.js"></script> -->
     <!-- // <script src="models/AppModel.js"></script> -->
     <!-- // <script src="views/SongQueueView.js"></script> -->
@@ -47,7 +48,7 @@
         <option value="3">EDM, bro!</option>
     </select>
     <div ID="keyboard" class="keyboard-holder" style='display:none'></div>
-    <div class="keyboard-options">
+    <div class="keyboard-options" style="display:none">
     Range [C<span ID="OCTAVE_LOWER">3</span>-B<span ID="OCTAVE_UPPER">5</span>]
     <input type="button" ID="-_OCTAVE" value="-" />
     <input type="button" ID="+_OCTAVE" value="+" /><br />
@@ -63,9 +64,7 @@
     <!-- <table class="note-table"> -->
     <!-- </table> -->
     <script>
-    // noteList = [];
     var pitches = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-    // var pitches = ['C', 'C#', 'D'];
     var octaves = [3, 4];
     var makePitchGroups = function(pitches, octaves) {
         var pitchGroup = {};
@@ -88,7 +87,6 @@
         var makeTable = function() {
             var rowModels = [];
             for(var octave in pitchGroup){
-                console.log(octave);
                 var scale = pitchGroup[octave];
                 for(var note = 0; note < scale.length; note++){
                     var row = [];
@@ -104,6 +102,8 @@
         };
         var noteTableModel = makeTable();
         var playerView = new PlayerView({model: noteTableModel});
+        var controlsView = new ControlsView({model: noteTableModel});
+        $('body').append(controlsView.render());
         $('body').append(playerView.render());
 
         var noteTableView = new NoteTableView({model: noteTableModel});
