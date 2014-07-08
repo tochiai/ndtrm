@@ -5,7 +5,6 @@ var NoteRowView = Backbone.View.extend({
   tagName: "tr",
 
   initialize: function() {
-    this.render();
   },
 
   render: function(){
@@ -15,6 +14,7 @@ var NoteRowView = Backbone.View.extend({
     var $noteRow = this.$el.append(this.model.get('rowCollection').map(function(note){
       return new NoteView({model: note}).render();
     }));
+
     return $noteRow;
   },
   playNotes: function(){

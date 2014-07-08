@@ -44,7 +44,8 @@
     <input type="button" ID="+_OCTAVE" value="+" /><br />
     <i>(Use left/right arrows to adjust with keyboard)</i>
     </div>
-    <table class="row-container"></table>
+    <table class="note-table">
+    </table>
     <script>
       $(function(){
         // set up model objects
@@ -52,10 +53,13 @@
         // var app = new AppModel({library: library});
         var a = new AudioSynthView();
         a.draw();
-        var note = new NoteModel({synth: a});
-        var noteView = new NoteView({model: note});
-        var noteRowModel = new NoteRowModel({rowCollection: new NoteRowCollection([note])});
-        var noteRowView = new NoteRowView({model: noteRowModel});
+        var noteC = new NoteModel({synth: a, pitch: 'C'});
+        var noteD = new NoteModel({synth: a, pitch: 'D'});
+        var noteViewC = new NoteView({model: noteC});
+        var noteViewD = new NoteView({model: noteD});
+        var noteRowModel = new NoteRowModel({rowCollection: new NoteRowCollection([noteC, noteD])});
+        var $noteRow = new NoteRowView({model: noteRowModel}).render();
+        var noteRowView = $('.note-table').append($noteRow);
 
 
 

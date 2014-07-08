@@ -3,11 +3,11 @@ var NoteView = Backbone.View.extend({
 
   tagName: 'td',
 
-  template: _.template('f'),
+  template: _.template('<%= pitch %>'),
 
   events: {
     'click': function() {
-      this.model.get('synth').fnPlayNote('C' , 4);
+      this.model.get('synth').fnPlayNote(this.model.get('pitch') , 4);
     },
     'dblclick': function() {
       this.toggleLock();
@@ -27,7 +27,7 @@ var NoteView = Backbone.View.extend({
   },
 
   render: function(){
-    return this.$el.html(this.template());
+    return this.$el.html(this.template(this.model.attributes));
   },
 
   toggleLock: function(){
@@ -35,7 +35,7 @@ var NoteView = Backbone.View.extend({
   },
 
   play: function(){
-    this.model.get('synth').fnPlayNote('C' , 4);
+    this.model.get('synth').fnPlayNote(this.model.get('pitch') , 4);
   }
 
 });
