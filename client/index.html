@@ -52,12 +52,66 @@
     <!-- <table class="note-table"> -->
     <!-- </table> -->
     <script>
+    // noteList = [];
+    var pitches = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    var octaves = [-1, 0, 1, 2, 3, 4];
+    var makePitchGroups = function(pitches, octaves) {
+        var pitchGroup = {};
+        for(var i = 0; i < octaves.length; i++){
+            for(var j = 0; j < pitches.length; j++) {
+                if(!Array.isArray(pitchGroup[octaves[i]])){
+                    pitchGroup[octaves[i]] = [];
+                }
+                pitchGroup[octaves[i]].push(pitches[j]); 
+            }
+        }
+        return pitchGroup;
+
+    };
       $(function(){
         // set up model objects
         // var library = new Songs(songData);
         // var app = new AppModel({library: library});
         var a = new AudioSynthView();
         a.draw();
+        var keyboard = {
+                50: 'C#,-1',
+                51: 'D#,-1',
+                53: 'F#,-1',
+                54: 'G#,-1',
+                55: 'A#,-1',
+                81: 'C,-1',
+                87: 'D,-1',
+                69: 'E,-1',
+                82: 'F,-1',
+                84: 'G,-1',
+                89: 'A,-1',
+                85: 'B,-1',
+                57: 'C#,0',
+                48: 'D#,0',
+                61: 'F#,0',
+                73: 'C,0',
+                79: 'D,0',
+                80: 'E,0',
+                219: 'F,0',
+                221: 'G,0',
+                65: 'G#,0',
+                83: 'A#,0',
+                70: 'C#,1',
+                71: 'D#,1',
+                74: 'F#,1',
+                75: 'G#,1',
+                76: 'A#,1',
+                90: 'A,0',
+                88: 'B,0',
+                67: 'C,1',
+                86: 'D,1',
+                66: 'E,1',
+                78: 'F,1',
+                77: 'G,1',
+                188: 'A,1',
+                190: 'B,1'
+            
         var noteC1 = new NoteModel({synth: a, pitch: 'C'});
         var noteC2 = new NoteModel({synth: a, pitch: 'C'});
         var noteD1 = new NoteModel({synth: a, pitch: 'D'});
