@@ -54,7 +54,8 @@
     <script>
     // noteList = [];
     var pitches = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-    var octaves = [-1, 0, 1, 2, 3, 4];
+    // var pitches = ['C', 'C#', 'D'];
+    var octaves = [3, 4];
     var makePitchGroups = function(pitches, octaves) {
         var pitchGroup = {};
         for(var i = 0; i < octaves.length; i++){
@@ -69,68 +70,32 @@
 
     };
       $(function(){
-        // set up model objects
-        // var library = new Songs(songData);
-        // var app = new AppModel({library: library});
         var a = new AudioSynthView();
         a.draw();
-        var keyboard = {
-                50: 'C#,-1',
-                51: 'D#,-1',
-                53: 'F#,-1',
-                54: 'G#,-1',
-                55: 'A#,-1',
-                81: 'C,-1',
-                87: 'D,-1',
-                69: 'E,-1',
-                82: 'F,-1',
-                84: 'G,-1',
-                89: 'A,-1',
-                85: 'B,-1',
-                57: 'C#,0',
-                48: 'D#,0',
-                61: 'F#,0',
-                73: 'C,0',
-                79: 'D,0',
-                80: 'E,0',
-                219: 'F,0',
-                221: 'G,0',
-                65: 'G#,0',
-                83: 'A#,0',
-                70: 'C#,1',
-                71: 'D#,1',
-                74: 'F#,1',
-                75: 'G#,1',
-                76: 'A#,1',
-                90: 'A,0',
-                88: 'B,0',
-                67: 'C,1',
-                86: 'D,1',
-                66: 'E,1',
-                78: 'F,1',
-                77: 'G,1',
-                188: 'A,1',
-                190: 'B,1'
-            
-        var noteC1 = new NoteModel({synth: a, pitch: 'C'});
-        var noteC2 = new NoteModel({synth: a, pitch: 'C'});
-        var noteD1 = new NoteModel({synth: a, pitch: 'D'});
-        var noteD2 = new NoteModel({synth: a, pitch: 'D'});
-        var noteViewC1 = new NoteView({model: noteC1});
-        var noteViewC2 = new NoteView({model: noteC2});
-        var noteViewD1 = new NoteView({model: noteD1});
-        var noteViewD2 = new NoteView({model: noteD2});
-        var noteRowModel1 = new NoteRowModel({rowCollection: new NoteRowCollection([noteC1, noteC2])});
-        var noteRowModel2 = new NoteRowModel({rowCollection: new NoteRowCollection([noteD1, noteD2])});
-        var noteTableCollection = new NoteTableCollection([noteRowModel1, noteRowModel2]);
-        // var noteRowView1 = new NoteRowView({model: noteRowModel1});
-        // var noteRowView2 = new NoteRowView({model: noteRowModel2});
-        var noteTableModel = new NoteTableModel({tableCollection: noteTableCollection});
+        var pitchGroup = makePitchGroups(pitches, octaves);
+        var rowLength = 8;
+        var makeTable = function() {
+            var rowModels = [];
+            for(var octave in pitchGroup){
+                console.log(octave);
+                var scale = pitchGroup[octave];
+                for(var note = 0; note < scale.length; note++){
+                    var row = [];
+                    for(var col = 0; col < rowLength; col++){
+                        row.push(new NoteModel({synth: a, pitch: scale[note], octave: octave}));
+                    }
+                    var rowModel = new NoteRowModel({rowCollection: new NoteRowCollection(row)});
+                    rowModels.push(rowModel);
+                }
+            }
+            var tableCollection = new NoteTableCollection(rowModels);
+            return new NoteTableModel({tableCollection: tableCollection});
+        };
+        var noteTableModel = makeTable();
         var noteTableView = new NoteTableView({model: noteTableModel});
         var $noteTable = noteTableView.render();
         $('body').append($noteTable);
 
-        // noteRowView.playNotes();
         noteTableView.start();
 
 

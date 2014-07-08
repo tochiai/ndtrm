@@ -42,7 +42,7 @@ var NoteView = Backbone.View.extend({
     this.model.set('audible', !this.model.get('audible'));
   },
   play: function(){
-    this.model.get('synth').fnPlayNote(this.model.get('pitch') , 4);
+    this.model.get('synth').fnPlayNote(this.model.get('pitch') , this.model.get('octave'));
   }
 
 });

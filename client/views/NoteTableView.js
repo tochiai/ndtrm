@@ -28,7 +28,7 @@ var NoteTableView = Backbone.View.extend({
   },
   start: function() {
     console.log(this);
-    setInterval(this.playCol.bind(this), 500);
+    setInterval(this.playCol.bind(this), 125);
   }
   // repeated:
     // trigger play for current column
