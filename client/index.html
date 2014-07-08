@@ -49,6 +49,13 @@
     <input type="button" ID="+_OCTAVE" value="+" /><br />
     <i>(Use left/right arrows to adjust with keyboard)</i>
     </div>
+    <!-- <div>
+        <form class="controls">
+            <input class="BPM"></input>
+            <input class="numRows"></input>
+            <input class="numCols"></input>
+        </form>
+    </div> -->
     <!-- <table class="note-table"> -->
     <!-- </table> -->
     <script>
@@ -96,7 +103,7 @@
         var $noteTable = noteTableView.render();
         $('body').append($noteTable);
 
-        noteTableView.start();
+        noteTableModel.play();
 
 
 

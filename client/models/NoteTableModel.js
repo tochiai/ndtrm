@@ -1,7 +1,8 @@
 var NoteTableModel = Backbone.Model.extend({
   defaults: {
     index: 0,
-    col: []
+    col: [],
+    playing: false
   },
   initialize: function(){
     this.set('rowLength', this.get('tableCollection').at(0).get('rowCollection').size());
@@ -14,5 +15,8 @@ var NoteTableModel = Backbone.Model.extend({
     this.set('col', this.get('tableCollection').map(function(row){
       return row.get('rowCollection').at(this.get('index'));
     }, this));
+  },
+  play: function(){
+    this.trigger('play');
   }
 });

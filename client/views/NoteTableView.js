@@ -3,8 +3,12 @@ var NoteTableView = Backbone.View.extend({
 
   tagName: "tbody",
   classname: "note-table",
-  
+
   initialize: function() {
+    this.model.on('play', function(){
+      this.model.set('playing', true);
+      this.start();
+    }, this);
   },
 
   render: function(){
@@ -20,11 +24,13 @@ var NoteTableView = Backbone.View.extend({
   playCol: function() {
     // var col = [];
     // count = this.collection.first().length;
-    var col = this.model.get('col');
-    for(var i = 0; i < col.length; i++){
-      col[i].play();
+    if(this.model.get('playing')){
+      var col = this.model.get('col');
+      for(var i = 0; i < col.length; i++){
+        col[i].play();
+      }
+      this.model.updateCol();
     }
-    this.model.updateCol();
   },
   start: function() {
     console.log(this);
