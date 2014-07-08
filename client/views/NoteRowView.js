@@ -5,6 +5,8 @@ var NoteRowView = Backbone.View.extend({
   tagName: "tr",
   
   initialize: function() {
+
+    this.model.on('play', this.playNotes, this);
   },
 
   render: function(){
@@ -25,7 +27,7 @@ var NoteRowView = Backbone.View.extend({
     }
   },
   playNotes: function(){
-    setInterval(this.checkAndPlay.bind(this), 500);
+    requestInterval(this.checkAndPlay.bind(this), 500);
   }
 
 });

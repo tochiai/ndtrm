@@ -19,5 +19,8 @@ var NoteRowModel = Backbone.Model.extend({
        }
     }, this);
   },
+  play: function() {
+    this.trigger('play');
+  },
   
 });
