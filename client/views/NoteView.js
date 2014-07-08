@@ -27,7 +27,7 @@ var NoteView = Backbone.View.extend({
   },
 
   render: function(){
-    return $('body').append(this.$el.html(this.template()));
+    return this.$el.html(this.template());
   },
 
   toggleLock: function(){
