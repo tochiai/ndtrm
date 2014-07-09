@@ -6,19 +6,32 @@ var ControlsView = Backbone.View.extend({
         '<label> BPM: ' +
           '<input class="bpm"></input>' +
         '</label>' +
-        '<label> Number of Rows: ' +
-          '<input class="numRows"></input>' +
+        '<label> Number of Columns: ' +
+          '<input class="rowLength"></input>' +
         '</label>' +
           '<button class="update" type="button">Update</button>' +
           '<button class="Reset" type="button">Reset</button>' +
       '</form>',
   initialize: function(){
-    var callback = function(){
+    var bpmCallback = function(){
       var bpmStr = this.$el.find('input.bpm').val();
       this.model.set('bpm', parseInt(bpmStr));
     };
-
-    this.$el.find('button.update').on('click', callback.bind(this));
+    var rowLengthCallback = function(){
+      var rowLengthStr = this.$el.find('input.rowLength').val();
+      this.model.set('rowLength', parseInt(rowLengthStr));
+    };
+    var paramCallback = function() {
+      var bpmStr = this.$el.find('input.bpm').val();
+      var rowLengthStr = this.$el.find('input.rowLength').val();
+      if(bpmStr !== ''){
+        bpmCallback.apply(this);
+      }
+      if(rowLengthStr !== ''){
+        rowLengthCallback.apply(this);
+      }
+    };
+    this.$el.find('button.update').on('click', paramCallback.bind(this));
   },
   render: function() {
     return this.$el;

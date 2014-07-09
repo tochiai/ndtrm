@@ -52,7 +52,7 @@ var NoteTableView = Backbone.View.extend({
   },
   changeRowLength: function(){
     var newLength = this.model.get('rowLength');
-    var currentLength = this.model.get('tableCollection').at(0).size();
+    var currentLength = this.model.get('tableCollection').at(0).get('rowCollection').size();
     if(newLength > currentLength){
       console.log('newLength is greater');
     } else {
